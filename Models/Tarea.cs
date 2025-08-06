@@ -15,7 +15,5 @@ public class Tarea{
     [JsonProperty]
     public int idUsuario {get; set;}
     
-    public Tarea(){
-       
-    }
+    public Tarea(){}
     }

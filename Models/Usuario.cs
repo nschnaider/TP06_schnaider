@@ -17,7 +17,5 @@ public class Usuario{
     [JsonProperty]
     public string password {get; set;}
     
-    public Usuario(){
-       
-    }
+    public Usuario(){}
     }
