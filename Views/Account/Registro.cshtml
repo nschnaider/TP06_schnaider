@@ -1,0 +1,9 @@
+@model Usuario
+<form asp-action="RegistroGuardar" method="post">
+    <input asp-for="nombre" placeholder="Nombre" required />
+    <input asp-for="apellido" placeholder="Apellido" required />
+    <input asp-for="foto" placeholder="Foto" />
+    <input asp-for="username" placeholder="Username" required />
+    <input asp-for="password" placeholder="Contraseña" required />
+    <button type="submit">Registrarse</button>
+</form>

@@ -1,8 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
-
-<div>
-    <h1>Index</h1>
-    <p>Bienvenidos al sitio web de NombreProyecto</p>
-</div>
+<h2>Mis tareas</h2>
+<a asp-action="CrearTarea">+ Nueva Tarea</a>
+<ul>
+@foreach (var t in Model)
+{
+    <li>
+        <strong>@t.titulo</strong> - @t.descripcion - @t.fecha.ToShortDateString()
+        <a asp-action="VerTarea" asp-route-id="@t.idTarea">Ver</a>
+        <a asp-action="EditarTarea" asp-route-id="@t.idTarea">Editar</a>
+        <a asp-action="EliminarTarea" asp-route-id="@t.idTarea">Eliminar</a>
+        <a asp-action="FinalizarTarea" asp-route-id="@t.idTarea">Finalizar</a>
+    </li>
+}
+</ul>

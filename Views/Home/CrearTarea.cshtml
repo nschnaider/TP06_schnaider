@@ -1,0 +1,7 @@
+@model Tarea
+<form asp-action="CrearTareaGuardar" method="post">
+    <input asp-for="titulo" placeholder="Título" required />
+    <input asp-for="descripcion" placeholder="Descripción" required />
+    <input asp-for="fecha" type="date" required />
+    <button type="submit">Crear</button>
+</form>

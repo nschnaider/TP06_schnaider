@@ -1,0 +1,8 @@
+@model Tarea
+<form asp-action="EditarTareaGuardar" method="post">
+    <input asp-for="idTarea" type="hidden" />
+    <input asp-for="titulo" placeholder="Título" value="@Model.titulo" required />
+    <input asp-for="descripcion" placeholder="Descripción" value="@Model.descripcion" required />
+    <input asp-for="fecha" type="date" value='@Model.fecha.ToString("yyyy-MM-dd")' required />
+    <button type="submit">Guardar cambios</button>
+</form>

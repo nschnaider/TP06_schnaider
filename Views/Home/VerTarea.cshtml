@@ -1,0 +1,6 @@
+@model Tarea
+<h2>@Model.titulo</h2>
+<p>@Model.descripcion</p>
+<p>Fecha: @Model.fecha.ToShortDateString()</p>
+<p>Finalizada: @(Model.finalizada ? "Sí" : "No")</p>
+<a asp-action="Index">Volver</a>

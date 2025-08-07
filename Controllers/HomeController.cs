@@ -15,6 +15,57 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        int? idUsuario = HttpContext.Session.GetInt32("idUsuario");
+        if (idUsuario == null)
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        List<Tarea> tareas = BD.DevolverTareas(idUsuario.Value);
+        return View(tareas);
+    }
+
+    public IActionResult VerTarea(int id)
+    {
+        Tarea tarea = BD.DevolverTarea(id);
+        return View(tarea);
+    }
+
+    public IActionResult CrearTarea()
+    {
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult CrearTareaGuardar(Tarea tarea)
+    {
+        tarea.idUsuario = HttpContext.Session.GetInt32("idUsuario").Value;
+        BD.CrearTarea(tarea);
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult EditarTarea(int id)
+    {
+        Tarea tarea = BD.DevolverTarea(id);
+        return View(tarea);
+    }
+
+    [HttpPost]
+    public IActionResult EditarTareaGuardar(Tarea tarea)
+    {
+        BD.ModificarTarea(tarea);
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult EliminarTarea(int id)
+    {
+        BD.EliminarTarea(id);
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult FinalizarTarea(int id)
+    {
+        BD.FinalizarTarea(id);
+        return RedirectToAction("Index");
     }
 }

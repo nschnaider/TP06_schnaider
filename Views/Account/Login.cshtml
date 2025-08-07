@@ -1,0 +1,9 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<form asp-action="LoginGuardar" method="post">
+    <input name="username" placeholder="Usuario" required />
+    <input name="password" type="password" placeholder="Contraseña" required />
+    <button type="submit">Ingresar</button>
+</form>
+<p style="color:red">@ViewBag.Mensaje</p>
