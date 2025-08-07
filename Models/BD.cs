@@ -10,8 +10,8 @@ public class BD
         string passwordEncriptada = Encriptador.Encriptar(password);
         using (SqlConnection db = new SqlConnection(connectionString))
         {
-            string query = "SELECT * FROM Usuarios WHERE nombre = @nombre AND password = @password";
-            usuario = db.QueryFirstOrDefault<Usuario>(query, new { nombre = username, password = passwordEncriptada });
+            string query = "SELECT * FROM Usuarios WHERE username = @username AND password = @password";
+            usuario = db.QueryFirstOrDefault<Usuario>(query, new { username = username, password = passwordEncriptada });
             
             return usuario;
         }
@@ -24,7 +24,7 @@ public class BD
         using (SqlConnection db = new SqlConnection(connectionString))
         {
             string insert = "INSERT INTO Usuarios (nombre, apellido, foto, username, ultimoLogin, password) VALUES (@pnombre, @papellido, @pfoto, @pusername, @pultimoLogin, @ppassword)";
-            db.Execute(insert, new { pnombre = nuevo.nombre, ppassword = nuevo.password, papellido = nuevo.apellido, pfoto = nuevo.foto, pusername = nuevo.username, pultimoLogin = nuevo.ultimoLogin});
+            db.Execute(insert, new { pnombre = nuevo.nombre, ppassword = nuevo.password, papellido = nuevo.apellido, pfoto = nuevo.foto, pusername = nuevo.username, pultimologin = DateTime.Now});
         }
     }
      public static List<Tarea> DevolverTareas(int idUsuario)

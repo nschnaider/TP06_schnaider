@@ -46,9 +46,20 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult RegistroGuardar(Usuario nuevo)
-    {
-        BD.Registrar(nuevo);
-        return RedirectToAction("Login");
-    }
+public IActionResult RegistroGuardar(Usuario nuevo)
+{
+     BD.Registrar(nuevo);
+     Usuario usuarioRegistrado = BD.Login(nuevo.username, nuevo.password);
+
+     if (usuarioRegistrado == null)
+     {
+         ViewBag.Mensaje = "Error al registrar el usuario.";
+         return View("Registro");
+     }
+    
+     HttpContext.Session.SetInt32("idUsuario", usuarioRegistrado.idUsuario);
+     BD.ActualizarLogin(usuarioRegistrado.idUsuario);
+     return RedirectToAction("Login", "Account");
+}
+
 }
