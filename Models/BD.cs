@@ -89,5 +89,13 @@ public class BD
             db.Execute(query, new { id = idUsuario });
         }
     }
+    public static Usuario? BuscarUsuarioPorUsername(string username)
+{
+    using (SqlConnection db = new SqlConnection(connectionString))
+    {
+        string query = "SELECT * FROM Usuarios WHERE username = @username";
+        return db.QueryFirstOrDefault<Usuario>(query, new { username });
+    }
+}
 
 }

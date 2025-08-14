@@ -1,8 +1,12 @@
-@model Tarea
-<form asp-action="EditarTareaGuardar" method="post">
-    <input asp-for="idTarea" type="hidden" />
-    <input asp-for="titulo" placeholder="Título" value="@Model.titulo" required />
-    <input asp-for="descripcion" placeholder="Descripción" value="@Model.descripcion" required />
-    <input asp-for="fecha" type="date" value='@Model.fecha.ToString("yyyy-MM-dd")' required />
+@{
+    ViewData["Title"] = "EditarTarea";
+    var tarea = ViewBag.Tarea;
+}
+
+<form action="EditarTareaGuardar" method="post">
+    <input type="hidden" name="idTarea" value="@tarea.idTarea" />
+    <input type="text" name="titulo" value="@tarea.titulo" autocomplete="off" required />
+    <input type="text" name="descripcion"  value="@tarea.descripcion" autocomplete="off" required />
+    <input type="date" name="fecha" value='@tarea.fecha.ToString("yyyy-mm-dd")' autocomplete="off" required />
     <button type="submit">Guardar cambios</button>
 </form>

@@ -1,6 +1,10 @@
-@model Tarea
-<h2>@Model.titulo</h2>
-<p>@Model.descripcion</p>
-<p>Fecha: @Model.fecha.ToShortDateString()</p>
-<p>Finalizada: @(Model.finalizada ? "Sí" : "No")</p>
-<a asp-action="Index">Volver</a>
+@{
+    ViewData["Title"] = "Ver Tarea";
+    var tarea = ViewBag.Tarea as Tarea;
+}
+
+<h2>@tarea.titulo</h2>
+<p>@tarea.descripcion</p>
+<p>Fecha: @tarea.fecha.ToShortDateString()</p>
+<p>Finalizada: @(tarea.finalizada ? "Sí" : "No")</p>
+<a href="/Home/Index">Volver</a>

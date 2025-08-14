@@ -1,10 +1,12 @@
 @{
     ViewData["Title"] = "Login";
 }
-<form asp-action="LoginGuardar" method="post">
-    <input name="username" placeholder="Usuario" required />
-    <input name="password" type="password" placeholder="Contraseña" required />
-    <button type="submit">Ingresar</button>
-    <a asp-action="Registro" class="btn">Registrarse</a>
-</form>
-<p style="color:red">@ViewBag.Mensaje</p>
+<section class="contenedor">
+  <form action="LoginGuardar" method="post">
+      <input name="username" placeholder="Usuario" autocomplete="off" required />
+      <input name="password" type="password" placeholder="Contraseña" autocomplete="off" required />
+      <button type="submit">Ingresar</button>
+      <a class="btn" href='@Url.Action("Registro", "Account")'>Registrarse</a>
+  </form>
+  <p class="error">@ViewBag.Mensaje</p>
+</section>

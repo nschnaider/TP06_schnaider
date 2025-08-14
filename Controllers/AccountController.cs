@@ -1,12 +1,13 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TP06_schnaider.Models;
+using System.Diagnostics;
 
 namespace TP06_schnaider.Controllers;
 
 public class AccountController : Controller
 {
-     public IActionResult Login()
+    
+    public IActionResult Login()
     {
         int? idUsuario = HttpContext.Session.GetInt32("idUsuario");
         if (idUsuario != null)
@@ -16,6 +17,7 @@ public class AccountController : Controller
         return View();
     }
 
+    
     [HttpPost]
     public IActionResult LoginGuardar(string username, string password)
     {
@@ -34,32 +36,36 @@ public class AccountController : Controller
         }
     }
 
+   
+    public IActionResult Registro()
+    {
+        int? idUsuario = HttpContext.Session.GetInt32("idUsuario");
+        if (idUsuario != null)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        return View();
+    }
+
+    
+    [HttpPost]
+    public IActionResult RegistroGuardar(Usuario nuevo)
+    {
+        Usuario existente = BD.BuscarUsuarioPorUsername(nuevo.username);
+        if (existente != null)
+        {
+            ViewBag.Mensaje = "Ese nombre de usuario ya está registrado.";
+            return View("Registro");
+        }
+
+        BD.Registrar(nuevo);
+        return RedirectToAction("Login");
+    }
+
+    
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Clear();
         return RedirectToAction("Login");
     }
-
-    public IActionResult Registro()
-    {
-        return View();
-    }
-
-    [HttpPost]
-public IActionResult RegistroGuardar(Usuario nuevo)
-{
-     BD.Registrar(nuevo);
-     Usuario usuarioRegistrado = BD.Login(nuevo.username, nuevo.password);
-
-     if (usuarioRegistrado == null)
-     {
-         ViewBag.Mensaje = "Error al registrar el usuario.";
-         return View("Registro");
-     }
-    
-     HttpContext.Session.SetInt32("idUsuario", usuarioRegistrado.idUsuario);
-     BD.ActualizarLogin(usuarioRegistrado.idUsuario);
-     return RedirectToAction("Login", "Account");
-}
-
 }

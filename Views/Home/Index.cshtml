@@ -1,17 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Index";
+    var tareas = ViewBag.Tareas as List<Tarea> ?? new List<Tarea>();
 }
+<section class="contenedor-index">
+
 <h2>Mis tareas</h2>
-<a asp-action="CrearTarea">+ Nueva Tarea</a>
+<a href="/Home/CrearTarea">+ Nueva Tarea</a>
+
 <ul>
-@foreach (var t in Model)
+@foreach (var t in tareas)
 {
     <li>
-        <strong>@t.titulo</strong> - @t.descripcion - @t.fecha.ToShortDateString()
-        <a asp-action="VerTarea" asp-route-id="@t.idTarea">Ver</a>
-        <a asp-action="EditarTarea" asp-route-id="@t.idTarea">Editar</a>
-        <a asp-action="EliminarTarea" asp-route-id="@t.idTarea">Eliminar</a>
-        <a asp-action="FinalizarTarea" asp-route-id="@t.idTarea">Finalizar</a>
+        <p>@t.titulo</p>
+        <a href="/Home/VerTarea?id=@t.idTarea">Ver</a>
+        <a href="/Home/EditarTarea?id=@t.idTarea">Editar</a>
+        <a href="/Home/EliminarTarea?id=@t.idTarea">Eliminar</a>
+        <a href="/Home/FinalizarTarea?id=@t.idTarea">Finalizar</a>
     </li>
 }
 </ul>
+
+<form action="/Account/CerrarSesion" method="get">
+    <button type="submit">Cerrar sesión</button>
+</form>
+</section>

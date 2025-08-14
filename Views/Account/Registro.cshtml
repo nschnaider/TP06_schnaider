@@ -1,9 +1,15 @@
-@model Usuario
-<form action = '@Url.Action("RegistroGuardar", "Account")' method="post">
-    <input asp-for="nombre" placeholder="Nombre" required />
-    <input asp-for="apellido" placeholder="Apellido" required />
-    <input asp-for="foto" placeholder="Foto" />
-    <input asp-for="username" placeholder="Username" required />
-    <input asp-for="password" placeholder="Contraseña" required />
+@{
+    ViewData["Title"] = "Registro";
+}
+<form action = "RegistroGuardar", method="post">
+    <input type = "text" placeholder="Nombre" autocomplete = "off" required />
+    <input type = "text" placeholder="Apellido" autocomplete = "off" required />
+    <input type = "text" placeholder="Foto" autocomplete = "off"/>
+    <input type = "text" placeholder="Username" autocomplete = "off" required />
+    <input type = "text" placeholder="Contraseña" autocomplete = "off" required />
     <button  type="submit"> Registrarse</button>
 </form>
+
+@if(ViewBag.Mensaje!=null){
+    <p>@ViewBag.Mensaje</p>
+}
