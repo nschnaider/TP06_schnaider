@@ -12,7 +12,7 @@ public class BD
         {
             string query = "SELECT * FROM Usuarios WHERE username = @username AND password = @password";
             usuario = db.QueryFirstOrDefault<Usuario>(query, new { username = username, password = passwordEncriptada });
-            
+            ActualizarLogin(usuario.idUsuario);
             return usuario;
         }
             

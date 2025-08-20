@@ -49,8 +49,9 @@ public class AccountController : Controller
 
     
     [HttpPost]
-    public IActionResult RegistroGuardar(Usuario nuevo)
+    public IActionResult RegistroGuardar(string nombre, string apellido, string foto, string username, string password)
     {
+        Usuario nuevo =  new Usuario(nombre, apellido, foto, username, password);
         Usuario existente = BD.BuscarUsuarioPorUsername(nuevo.username);
         if (existente != null)
         {

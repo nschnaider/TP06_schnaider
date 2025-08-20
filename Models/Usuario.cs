@@ -18,4 +18,13 @@ public class Usuario{
     public string password {get; set;}
     
     public Usuario(){}
+    public Usuario(string nombre, string apellido, string foto, string username, string password){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.foto = foto;
+        this.username = username;
+        this.password = password;
+     }
     }
+     
+    

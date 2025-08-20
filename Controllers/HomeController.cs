@@ -22,13 +22,15 @@ public class HomeController : Controller
         }
 
         List<Tarea> tareas = BD.DevolverTareas(idUsuario.Value);
-        return View(tareas);
+        ViewBag.Tareas = tareas;
+        return View();
     }
 
     public IActionResult VerTarea(int id)
     {
         Tarea tarea = BD.DevolverTarea(id);
-        return View(tarea);
+        ViewBag.Tarea = tarea;
+        return View();
     }
 
     public IActionResult CrearTarea()
@@ -47,7 +49,8 @@ public class HomeController : Controller
     public IActionResult EditarTarea(int id)
     {
         Tarea tarea = BD.DevolverTarea(id);
-        return View(tarea);
+        ViewBag.Tarea = tarea;
+        return View();
     }
 
     [HttpPost]

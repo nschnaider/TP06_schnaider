@@ -3,8 +3,13 @@
     var tarea = ViewBag.Tarea as Tarea;
 }
 
-<h2>@tarea.titulo</h2>
-<p>@tarea.descripcion</p>
-<p>Fecha: @tarea.fecha.ToShortDateString()</p>
-<p>Finalizada: @(tarea.finalizada ? "Sí" : "No")</p>
-<a href="/Home/Index">Volver</a>
+<section class="contenedor-ver-tarea">
+    <div class="tarjeta-tarea">
+        <h2>@tarea.titulo</h2>
+        <p class="descripcion">@tarea.descripcion</p>
+        <p><strong>📅 Fecha:</strong> @tarea.fecha.ToShortDateString()</p>
+        <p><strong>✅ Finalizada:</strong> @(tarea.finalizada ? "Sí" : "No")</p>
+
+        <a href="/Home/Index" class="btn-volver">← Volver</a>
+    </div>
+</section>
